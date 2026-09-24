@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f6">
+<meta name="description" content="A little birthday universe made with love.">
+<title>Happy Birthday, My Favorite Hooman ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#fff7fa;
+  --bg2:#fff0f6;
+  --card:rgba(255,255,255,.88);
+  --card-hover:rgba(255,255,255,.98);
+  --pink:#e875a7;
+  --rose:#d95388;
+  --deep-rose:#b83d6e;
+  --soft:#f9dce9;
+  --lav:#b59ad9;
+  --gold:#c58b54;
+  --gold-foil:#d4af37;
+  --text:#4b3040;
+  --muted:#806b77;
+  --line:#f0d8e3;
+  --shadow:0 18px 50px rgba(183,93,133,.12);
+  --shadow-hover:0 24px 60px rgba(183,93,133,.22);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at 10% 8%,rgba(255,191,215,.42),transparent 28%),
+    radial-gradient(circle at 90% 18%,rgba(225,204,243,.38),transparent 26%),
+    radial-gradient(circle at 50% 85%,rgba(255,221,232,.45),transparent 32%),
+    radial-gradient(circle at 15% 60%,rgba(254,233,242,.6),transparent 30%),
+    var(--bg);
+  background-attachment:fixed;
+  color:var(--text);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
+}
+body.locked{overflow:hidden}
+button{font:inherit}
+a{color:inherit;text-decoration:none}
+::selection{background:#f3b5ce;color:#4b3040}
+
+#stars,#confetti{position:fixed;inset:0;pointer-events:none;z-index:0}
+.star{
+  position:absolute;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:#e8a8c1;
+  opacity:.35;
+  animation:twinkle 2.8s infinite ease-in-out;
+}
+@keyframes twinkle{50%{opacity:.08;transform:scale(.55)}}
+
+#intro{
+  position:fixed;inset:0;z-index:1000;display:grid;place-items:center;
+  background:radial-gradient(circle at center,#fff8fb 0%,#ffeaf3 62%,#f9ddeb 100%);
+  transition:opacity .9s cubic-bezier(0.16, 1, 0.3, 1),visibility .9s;
+}
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-box{text-align:center;padding:32px;max-width:720px}
+.intro-box .tiny{letter-spacing:.28em;text-transform:uppercase;color:var(--rose);font-size:.74rem;font-weight:600}
+.intro-box h1{font:600 clamp(3.4rem,9.5vw,6.8rem)/.92 "Playfair Display",serif;margin:25px 0 20px;color:#75435b}
+.intro-box p{color:var(--muted);max-width:540px;margin:0 auto 32px;line-height:1.8}
+.open-btn{
+  border:0;cursor:pointer;color:white;font-weight:700;padding:15px 32px;border-radius:999px;
+  background:linear-gradient(135deg,#df82aa,#c96d98);box-shadow:0 10px 30px rgba(201,109,152,.22);
+  transition:.25s transform,.25s box-shadow;display:inline-flex;align-items:center;gap:10px;
+}
+.open-btn:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(201,109,152,.32)}
+.heart-pulse{font-size:2.2rem;display:block;color:var(--pink);animation:heartbeat 1.4s infinite}
+@keyframes heartbeat{50%{transform:scale(1.15)}}
+
+main{position:relative;z-index:1}
+section{padding:90px 20px;position:relative}
+.container{width:min(1160px,100% - 20px);margin:auto}
+
+.hero{min-height:92vh;display:grid;place-items:center;text-align:center;padding:80px 20px 60px}
+.hero-inner{max-width:920px}
+.kicker{
+  display:inline-block;
+  font-size:.78rem;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--rose);
+  background:rgba(217,83,136,.09);
+  padding:6px 20px;
+  border-radius:999px;
+  border:1px solid rgba(217,83,136,.18);
+  margin-bottom:14px;
+  font-weight:600;
+}
+.hero h1{
+  font:600 clamp(4rem,12vw,9.2rem)/.85 "Playfair Display",serif;
+  margin:20px 0 26px;color:#73435a;
+}
+.hero h1 span{
+  background:linear-gradient(120deg,#cf638f,#a879b9);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .sub{font:500 clamp(1.25rem,3vw,1.75rem)/1.5 "Caveat",cursive;color:#765e6b}
+.hero .date{margin-top:28px;color:#a28593;font-size:.88rem;letter-spacing:.12em;font-weight:500}
+.scroll{display:inline-flex;flex-direction:column;gap:8px;margin-top:48px;color:#a08491;font-size:.82rem;cursor:pointer;transition:.25s color;font-weight:600}
+.scroll:hover{color:var(--rose)}
+.scroll span{animation:bounce 1.7s infinite;font-size:1.15rem}
+@keyframes bounce{50%{transform:translateY(7px)}}
+
+.section-head{text-align:center;margin-bottom:40px}
+.eyebrow{color:var(--rose);text-transform:uppercase;letter-spacing:.25em;font-size:.74rem;font-weight:600}
+.section-head h2{font:600 clamp(2.3rem,5.5vw,4.1rem)/1.08 "Playfair Display",serif;margin:12px 0;color:#714158}
+.section-head p{color:var(--muted);max-width:680px;margin:auto;line-height:1.8}
+
+.letter{
+  background:rgba(255,255,255,.85);
+  border:1px solid var(--line);border-radius:32px;padding:clamp(28px,6vw,68px);
+  box-shadow:var(--shadow);position:relative;overflow:hidden;backdrop-filter:blur(10px);
+}
+.letter:before{content:"“";position:absolute;right:35px;top:-22px;font:180px "Playfair Display",serif;color:rgba(232,117,167,.09);line-height:1}
+.letter p{font:500 clamp(1.08rem,2vw,1.25rem)/1.95 "Caveat",cursive;color:#624857;margin:0 0 20px}
+.signature{font:600 1.65rem "Caveat",cursive;color:var(--rose);margin-top:30px}
+
+/* ========================================================
+   CUTE POLAROID PHOTO WALL — 7 MEMORIES (NO TAPE, NO NUMBERS)
+   ======================================================== */
+.polaroid-wall{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:flex-start;
+  gap:34px 26px;
+  padding:20px 10px 10px;
+}
+
+.polaroid{
+  --tilt:0deg;
+  position:relative;
+  width:250px;
+  background:#fffdfb;
+  padding:14px 14px 20px;
+  border-radius:6px;
+  box-shadow:
+    0 14px 30px rgba(140,73,103,.16),
+    0 2px 6px rgba(0,0,0,.05);
+  transform:rotate(var(--tilt));
+  transition:transform .3s cubic-bezier(0.16,1,0.3,1),box-shadow .3s;
+  cursor:pointer;
+}
+.polaroid:nth-child(1){--tilt:-4deg}
+.polaroid:nth-child(2){--tilt:3deg;margin-top:26px}
+.polaroid:nth-child(3){--tilt:-2deg}
+.polaroid:nth-child(4){--tilt:4deg;margin-top:14px}
+.polaroid:nth-child(5){--tilt:-5deg;margin-top:30px}
+.polaroid:nth-child(6){--tilt:2deg}
+.polaroid:nth-child(7){--tilt:-3deg;margin-top:18px}
+
+.polaroid:hover{
+  transform:rotate(0deg) translateY(-8px) scale(1.045);
+  box-shadow:0 24px 46px rgba(140,73,103,.28);
+  z-index:5;
+}
+
+.polaroid-photo{
+  width:100%;
+  height:220px;
+  border-radius:2px;
+  overflow:hidden;
+  background:#f8e4ee;
+}
+.polaroid-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .5s ease;
+}
+.polaroid:hover .polaroid-photo img{transform:scale(1.06)}
+
+.polaroid-comment{
+  margin-top:12px;
+  font-family:"Caveat",cursive;
+  font-size:1.22rem;
+  line-height:1.35;
+  color:#5a3f4d;
+  text-align:center;
+}
+
+/* LIGHTBOX for enlarging a polaroid photo + its comment */
+#lightbox{
+  position:fixed;inset:0;z-index:2000;display:none;place-items:center;
+  background:rgba(52,24,39,.75);backdrop-filter:blur(16px);padding:20px;
+}
+#lightbox.active{display:grid}
+.lightbox-card{
+  max-width:560px;width:100%;background:#fffafc;border:1px solid var(--line);
+  border-radius:22px;overflow:hidden;box-shadow:0 28px 75px rgba(0,0,0,.3);position:relative;
+  animation:popIn .3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes popIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.lightbox-card img{width:100%;max-height:55vh;object-fit:contain;background:#fde8f2;display:block}
+.lightbox-body{padding:22px 26px 26px;text-align:center}
+.lightbox-body p{font-family:"Caveat",cursive;font-size:1.4rem;color:#543847;margin:0}
+.lightbox-close{
+  position:absolute;top:14px;right:14px;background:rgba(255,255,255,.9);border:1px solid var(--line);
+  color:var(--text);width:36px;height:36px;border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:1.05rem;
+  transition:.2s transform;z-index:5;
+}
+.lightbox-close:hover{transform:scale(1.1);background:#fff}
+
+/* Quote Section */
+.quote{text-align:center;padding:90px 20px}
+.quote blockquote{font:600 clamp(2rem,5vw,4.2rem)/1.18 "Playfair Display",serif;max-width:920px;margin:auto;color:#714158}
+.quote cite{display:block;margin-top:25px;color:var(--rose);font:1.5rem "Caveat",cursive;font-style:normal}
+
+/* Finale */
+.final{
+  min-height:75vh;display:grid;place-items:center;text-align:center;
+  background:radial-gradient(circle at center,rgba(255,187,213,.35),transparent 52%)
+}
+.final h2{font:600 clamp(3.3rem,9vw,7.4rem)/.92 "Playfair Display",serif;margin:15px 0;color:#714158}
+.final p{max-width:650px;margin:auto;color:var(--muted);line-height:1.8}
+.big-heart{font-size:3.6rem;margin-top:30px;color:var(--pink);animation:heartbeat 1.4s infinite;cursor:pointer}
+
+footer{
+  text-align:center;padding:45px 20px;color:#9b818f;font-size:.82rem;border-top:1px solid #f2dfe7;
+  background:rgba(255,255,255,.4);
+}
+
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s cubic-bezier(0.16, 1, 0.3, 1),transform .8s cubic-bezier(0.16, 1, 0.3, 1)}
+.reveal.visible{opacity:1;transform:none}
+
+/* Floating Music Control */
+.floating-music{
+  position:fixed;
+  bottom:26px;
+  right:26px;
+  z-index:90;
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--line);
+  backdrop-filter:blur(18px);
+  color:var(--rose);
+  border-radius:999px;
+  padding:10px 18px;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  cursor:pointer;
+  box-shadow:0 12px 35px rgba(183,93,133,.18);
+  transition:transform .25s,background .25s,box-shadow .25s;
+  font-size:.84rem;
+  font-weight:600;
+}
+.floating-music:hover{
+  transform:translateY(-3px);
+  background:#fff;
+  box-shadow:0 16px 40px rgba(183,93,133,.26);
+}
+.music-wave{display:inline-flex;align-items:center;gap:3px;height:14px}
+.music-bar{width:2.5px;background:var(--rose);border-radius:2px;animation:equalizer 1s infinite ease-in-out}
+.music-bar:nth-child(1){height:6px;animation-delay:0s}
+.music-bar:nth-child(2){height:14px;animation-delay:.2s}
+.music-bar:nth-child(3){height:9px;animation-delay:.4s}
+@keyframes equalizer{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1.1)}}
+.floating-music.paused .music-bar{animation:none;height:4px}
+
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;z-index:200;
+  background:#fff;color:var(--text);padding:12px 24px;border-radius:999px;font-size:.86rem;font-weight:600;
+  transition:.3s;pointer-events:none;box-shadow:var(--shadow);border:1px solid var(--line);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.confetti-piece{position:absolute;width:9px;height:16px;animation:fall linear forwards}
+@keyframes fall{to{transform:translate3d(var(--x),110vh,0) rotate(720deg);opacity:.9}}
+</style>
+</head>
+
+<body class="locked">
+
+<div id="stars"></div>
+<div id="confetti"></div>
+
+<!-- 1. INTRO SURPRISE MODAL -->
+<div id="intro">
+  <div class="intro-box">
+    <span class="heart-pulse">♡</span>
+    <div class="tiny">a tiny birthday surprise for you</div>
+    <h1>From Unnikuttan...</h1>
+    <p>A little corner of the internet filled with memories, words and all the love you deserve today.</p>
+    <button class="open-btn" id="openBtn">Punch Me✨</button>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="kicker">For my lil Girl</div>
+    <h1>Happy<br><span>Birthday</span></h1>
+    <div class="sub">to the person who make my ordinary days special ✨</div>
+    <div class="date">A Cute wish from ur Unnikuttan</div>
+    <a class="scroll" onclick="document.getElementById('letter').scrollIntoView({behavior:'smooth'})">
+      Thaye Nokk <span>↓</span>
+    </a>
+  </div>
+</section>
+
+<!-- 2. LETTER SECTION -->
+<section id="letter">
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="eyebrow">A letter for you</div>
+      <h2>Dear Constant,</h2>
+    </div>
+    <div class="letter">
+      <p>Happy birthday my lovee♥️... i havent counted the years of our friendship but i have counted the memories of us.. ♡</p>
+      <p>am soo proud and lucky to have a best one like you.. njn paryand thanne aryalo nmde bond .. ethre desp ayit call thodngyalum chiriche call vekarulu.. we always have each other kannee.. And no matter what or when, u will always pick up My call… Ashne freeyano nn choikumekum u will be there.. We together have gone through alot of things and traumas.. But everything is fine when we have us…</p>
+      <p>Don’t worry being as single.. Am here as ur girlfriend 🌚🤣.. Kannee am so grateful to you for being with meee .. And chakrekk nth venelum njn ondetooo..I really missyudaa🥹🥹.. Njn eppyum aloikarind ni vann surprise akyernengii.. I really miss that kutaa..</p>
+      <p>we haven’t gone for loong trips or hangouts like other best friends But we always had the best and deep conversations…</p>
+      <p>Even in long distance u made sure am good and fine.. Thank you soo much for ur pasamm♥️🫂…</p>
+      <p>Hopefully next birthday we eill celebrate together .. Thallee karayandataa… Ethre vayasayinn ariyoo🌚🌚.. Kelavi kunj😌</p>
+      <p>Most happiest birthday to my constant 🫶.May this year fulfills all your wishes..May All your dreams come turu..Love youu chellom!!</p>
+      <div class="signature">Enn Swantham,<br>Yours Unnikuttan ♡</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. CUTE POLAROID PHOTO WALL (7 MEMORIES - NO TAPE, NO NUMBERS) -->
+<section id="album">
+  <div class="container reveal">
+    <div class="section-head">
+      <div class="eyebrow">U &amp; Me</div>
+      <h2>Our kutti Memories ♡</h2>
+      <p>Years passsed meenu, And here we are with the same bond ♡</p>
+    </div>
+
+    <div class="polaroid-wall" id="polaroidWall">
+      <!-- Rendered by JS without tape and without number badges -->
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote">
+  <div class="container reveal">
+    <blockquote>“Some people come into your life and quietly become part of your favorite memories.”</blockquote>
+    <cite>— and you are forever one of mine ♡</cite>
+  </div>
+</section>
+
+<!-- BIRTHDAY WISH FINALE -->
+<section class="final" id="ending">
+  <div class="container reveal">
+    <div class="eyebrow">Once Agaiinn!</div>
+    <h2>Happy Birthday,<br>beautiful hooman. ✨</h2>
+    <p>May this year bring you softer mornings, brighter sunsets, unexpected reasons to smile, &ldquo;Everything happens for a reason.&rdquo;</p>
+    <div class="big-heart" id="bigHeart" onclick="launchConfetti(120); showToast('Endless love for you! ♡')">♡</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Lots of love. ♡
+</footer>
+
+<!-- LIGHTBOX MODAL FOR ENLARGING A PHOTO + ITS COMMENT -->
+<div id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-card" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
+    <img id="lbImg" src="" alt="Enlarged memory photo">
+    <div class="lightbox-body">
+      <p id="lbComment"></p>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast">Birthday magic activated ✨</div>
+
+<!-- FLOATING MUSIC BUTTON -->
+<button class="floating-music" id="musicBtn" aria-label="Toggle ambient music box">
+  <span class="music-wave" id="musicWave">
+    <span class="music-bar"></span>
+    <span class="music-bar"></span>
+    <span class="music-bar"></span>
+  </span>
+  <span id="musicText">Music Box ♫</span>
+</button>
+
+<audio id="bgMusic" loop preload="none">
+  <source src="music/birthday-song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* The 7 Memories Dataset — just an image + one comment each, jpeg only */
+const memories = [
+  { num: 1, id: "01", img: "images/photo1.jpeg", comment: "En Thangom ♡" },
+  { num: 2, id: "02", img: "images/photo2.jpeg", comment: "Muuuaaaahhhh ♡" },
+  { num: 3, id: "03", img: "images/photo3.jpeg", comment: "Korangg kunjj ♡" },
+  { num: 4, id: "04", img: "images/photo4.jpeg", comment: "Cringe Babiees ♡" },
+  { num: 5, id: "05", img: "images/photo5.jpeg", comment: "Us with our kanji look  ♡" },
+  { num: 6, id: "06", img: "images/photo6.jpeg", comment: "My Lebaneeesee ♡" },
+  { num: 7, id: "07", img: "images/photo7.jpeg", comment: "Our last pic together... Miisssyudi ♡" }
+];
+
+const totalMemories = memories.length;
+const polaroidWall = document.getElementById("polaroidWall");
+
+/* Render the cute polaroid wall — NO tape and NO number badges */
+function initPolaroidWall() {
+  polaroidWall.innerHTML = "";
+  memories.forEach((m, idx) => {
+    const card = document.createElement("div");
+    card.className = "polaroid";
+    card.onclick = () => openLightbox(idx + 1);
+    card.innerHTML = `
+      <div class="polaroid-photo">
+        <img src="${m.img}" alt="${m.comment}" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'300\\' height=\\'300\\' viewBox=\\'0 0 300 300\\'><rect width=\\'300\\' height=\\'300\\' fill=\\'%23fedfe9\\'/><text x=\\'50%\\' y=\\'45%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' font-size=\\'44\\'>💖</text><text x=\\'50%\\' y=\\'65%\\' dominant-baseline=\\'middle\\' text-anchor=\\'middle\\' font-family=\\'Caveat, cursive, sans-serif\\' font-size=\\'20\\' fill=\\'%235a3f4d\\'>${encodeURIComponent(m.comment)}</text></svg>'">
+      </div>
+      <p class="polaroid-comment">${m.comment}</p>
+    `;
+    polaroidWall.appendChild(card);
+  });
+}
+initPolaroidWall();
+
+/* Ambient Melodic Music Box Synthesizer (Zero-dependency Web Audio API) */
+class AmbientMusicBox {
+  constructor() {
+    this.ctx = null;
+    this.isPlaying = false;
+    this.timeoutId = null;
+    this.noteIndex = 0;
+    this.melody = [
+      { note: 261.63, dur: 0.35, pause: 0.1 },
+      { note: 261.63, dur: 0.25, pause: 0.05 },
+      { note: 293.66, dur: 0.6, pause: 0.1 },
+      { note: 261.63, dur: 0.6, pause: 0.1 },
+      { note: 349.23, dur: 0.6, pause: 0.1 },
+      { note: 329.63, dur: 1.1, pause: 0.3 },
+      { note: 261.63, dur: 0.35, pause: 0.1 },
+      { note: 261.63, dur: 0.25, pause: 0.05 },
+      { note: 293.66, dur: 0.6, pause: 0.1 },
+      { note: 261.63, dur: 0.6, pause: 0.1 },
+      { note: 392.00, dur: 0.6, pause: 0.1 },
+      { note: 349.23, dur: 1.1, pause: 0.3 }
+    ];
+  }
+  init() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioCtx();
+    }
+    if (this.ctx.state === 'suspended') this.ctx.resume();
+  }
+  playNote(freq, dur) {
+    if (!this.ctx) return;
+    const osc1 = this.ctx.createOscillator();
+    const osc2 = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc1.type = 'sine';
+    osc1.frequency.setValueAtTime(freq, this.ctx.currentTime);
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(freq * 2, this.ctx.currentTime);
+    const now = this.ctx.currentTime;
+    gain.gain.setValueAtTime(0, now);
+    gain.gain.linearRampToValueAtTime(0.11, now + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + dur + 0.35);
+    osc1.connect(gain);
+    osc2.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc1.start(now);
+    osc2.start(now);
+    osc1.stop(now + dur + 0.4);
+    osc2.stop(now + dur + 0.4);
+  }
+  schedule() {
+    if (!this.isPlaying) return;
+    const item = this.melody[this.noteIndex];
+    this.playNote(item.note, item.dur);
+    this.noteIndex = (this.noteIndex + 1) % this.melody.length;
+    this.timeoutId = setTimeout(() => this.schedule(), (item.dur + item.pause) * 1000);
+  }
+  toggle() {
+    this.init();
+    if (this.isPlaying) {
+      this.isPlaying = false;
+      if (this.timeoutId) clearTimeout(this.timeoutId);
+      return false;
+    } else {
+      this.isPlaying = true;
+      this.schedule();
+      return true;
+    }
+  }
+}
+
+const musicBox = new AmbientMusicBox();
+
+// DOM references
+const intro = document.getElementById("intro");
+const openBtn = document.getElementById("openBtn");
+const confetti = document.getElementById("confetti");
+const musicBtn = document.getElementById("musicBtn");
+const musicText = document.getElementById("musicText");
+const bgMusic = document.getElementById("bgMusic");
+const toast = document.getElementById("toast");
+const stars = document.getElementById("stars");
+
+// Generate sparkling stars
+for(let i = 0; i < 90; i++) {
+  const s = document.createElement("span");
+  s.className = "star";
+  s.style.left = (Math.random() * 100) + "%";
+  s.style.top = (Math.random() * 100) + "%";
+  s.style.animationDelay = (Math.random() * 3) + "s";
+  s.style.animationDuration = (1.5 + Math.random() * 3) + "s";
+  stars.appendChild(s);
+}
+
+// Open surprise modal
+openBtn.addEventListener("click", () => {
+  intro.classList.add("hide");
+  document.body.classList.remove("locked");
+  launchConfetti(85);
+  showToast("Welcome to your birthday universe ♡");
+  const started = musicBox.toggle();
+  if (started) {
+    musicBtn.classList.remove("paused");
+    musicText.textContent = "Music Playing ♫";
+  }
+});
+
+// Floating Music toggle
+musicBtn.addEventListener("click", async () => {
+  if (bgMusic && bgMusic.querySelector("source") && bgMusic.src && !bgMusic.src.endsWith("undefined")) {
+    try {
+      if (bgMusic.paused) {
+        await bgMusic.play();
+        musicBtn.classList.remove("paused");
+        musicText.textContent = "Song Playing ♫";
+        showToast("Playing Birthday Song ♫");
+        return;
+      } else {
+        bgMusic.pause();
+        musicBtn.classList.add("paused");
+        musicText.textContent = "Music Paused";
+        showToast("Music Paused");
+        return;
+      }
+    } catch(e) {}
+  }
+
+  const playing = musicBox.toggle();
+  if (playing) {
+    musicBtn.classList.remove("paused");
+    musicText.textContent = "Music Playing ♫";
+    showToast("Music Box Playing ♫");
+  } else {
+    musicBtn.classList.add("paused");
+    musicText.textContent = "Music Paused";
+    showToast("Music Box Paused");
+  }
+});
+
+// Confetti shower
+function launchConfetti(amount = 75) {
+  const pieces = ["✦", "♥", "✧", "•", "★", "💖", "🌸", "✨", "🎀"];
+  for (let i = 0; i < amount; i++) {
+    const p = document.createElement("span");
+    p.className = "confetti-piece";
+    p.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+    p.style.left = (Math.random() * 100) + "%";
+    p.style.top = "-30px";
+    p.style.fontSize = (9 + Math.random() * 16) + "px";
+    p.style.color = ["#e875a7", "#d95388", "#b59ad9", "#c58b54", "#ff9ec6"][Math.floor(Math.random() * 5)];
+    p.style.animationDuration = (2.5 + Math.random() * 3) + "s";
+    p.style.setProperty("--x", (Math.random() * 320 - 160) + "px");
+    p.style.animationDelay = (Math.random() * 0.8) + "s";
+    confetti.appendChild(p);
+    setTimeout(() => p.remove(), 6500);
+  }
+}
+
+// Toast
+let toastTimer;
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+}
+
+// Lightbox for enlarging any of the 7 photos
+function openLightbox(num) {
+  const m = memories[num - 1];
+  if (!m) return;
+  const lbImg = document.getElementById("lbImg");
+  lbImg.src = m.img;
+  lbImg.onerror = function() {
+    this.onerror = null;
+    this.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='400' viewBox='0 0 500 400'><rect width='500' height='400' fill='%23fedfe9'/><text x='50%' y='45%' dominant-baseline='middle' text-anchor='middle' font-size='60'>💖</text><text x='50%' y='65%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='22' fill='%235a3f4d'>" + encodeURIComponent(m.comment) + "</text></svg>";
+  };
+  document.getElementById("lbComment").textContent = m.comment;
+  document.getElementById("lightbox").classList.add("active");
+  launchConfetti(20);
+}
+
+function closeLightbox(e) {
+  document.getElementById("lightbox").classList.remove("active");
+}
+
+// Reveal on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+// Keyboard shortcuts
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeLightbox();
+  if (e.key.toLowerCase() === "b") launchConfetti(35);
+});
+</script>
+</body>
+</html>
